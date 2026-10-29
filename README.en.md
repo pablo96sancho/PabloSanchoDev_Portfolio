@@ -6,7 +6,7 @@
 
 **My developer website, built as a macOS desktop.**
 
-[![Visit the site](https://img.shields.io/badge/Visit_the_site-0071E3?style=for-the-badge&logo=safari&logoColor=white)](https://pablo96sancho.github.io/)
+[![Visit the site](https://img.shields.io/badge/Visit_the_site-0071E3?style=for-the-badge&logo=safari&logoColor=white)](https://pablosanchodev.vercel.app)
 
 ![HTML](https://img.shields.io/badge/HTML-000000?style=flat-square&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-000000?style=flat-square&logo=css3&logoColor=white)
@@ -76,8 +76,8 @@ and times in each language, and `IntersectionObserver` so the terminal starts wh
 ## Run it locally
 
 ```bash
-git clone https://github.com/pablo96sancho/pablo96sancho.github.io.git
-cd pablo96sancho.github.io
+git clone https://github.com/pablo96sancho/PabloSanchoDev_Portfolio.git
+cd PabloSanchoDev_Portfolio
 python3 -m http.server 8000
 ```
 

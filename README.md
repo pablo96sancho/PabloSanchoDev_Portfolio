@@ -6,7 +6,7 @@
 
 **Mi web de desarrollador, hecha como un escritorio de macOS.**
 
-[![Ver la web](https://img.shields.io/badge/Ver_la_web-0071E3?style=for-the-badge&logo=safari&logoColor=white)](https://pablo96sancho.github.io/)
+[![Ver la web](https://img.shields.io/badge/Ver_la_web-0071E3?style=for-the-badge&logo=safari&logoColor=white)](https://pablosanchodev.vercel.app)
 
 ![HTML](https://img.shields.io/badge/HTML-000000?style=flat-square&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-000000?style=flat-square&logo=css3&logoColor=white)
@@ -77,8 +77,8 @@ arranque cuando se ve.
 ## Probarla en local
 
 ```bash
-git clone https://github.com/pablo96sancho/pablo96sancho.github.io.git
-cd pablo96sancho.github.io
+git clone https://github.com/pablo96sancho/PabloSanchoDev_Portfolio.git
+cd PabloSanchoDev_Portfolio
 python3 -m http.server 8000
 ```
 
