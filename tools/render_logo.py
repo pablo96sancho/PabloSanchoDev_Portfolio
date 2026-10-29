@@ -1,7 +1,8 @@
 """
 Renderiza el logo (agujero negro) como PNG con brillo real.
 
-  python3 tools/render_logo.py            -> assets/logo-512.png y assets/logo-64.png
+  python3 tools/render_logo.py   -> assets/logo-512.png, assets/logo-64.png
+                                    y assets/logo-avatar.png (versión para el círculo de Sobre mí)
 
 Necesita numpy y Pillow. Cómo está montado:
   - Disco de acreción: banda fina que cruza por delante del horizonte, con estrías
@@ -21,6 +22,7 @@ SS = 1024            # resolución de trabajo (luego se reduce)
 TILT = np.radians(-10)
 HOLE = 0.30          # radio del horizonte (la imagen va de -1 a 1)
 rng = np.random.default_rng(7)
+streak_scale = 1.0   # 1 = estrías normales; menos = más suave (para tamaños pequeños)
 
 
 def gaussian_blur(img, sigma):
@@ -40,7 +42,7 @@ def streaks(t, strength, octaves=6):
     for i in range(octaves):
         freq = 6 * 2 ** i * rng.uniform(0.8, 1.2)
         s += np.sin(t * freq + rng.uniform(0, 2 * np.pi)) / (i + 1.5)
-    return 1 + strength * s / 1.5
+    return 1 + strength * streak_scale * s / 1.5
 
 
 def smoothstep(a, b, x):
@@ -48,7 +50,10 @@ def smoothstep(a, b, x):
     return t * t * (3 - 2 * t)
 
 
-def render():
+def render(smoothness=1.0):
+    global rng, streak_scale
+    rng = np.random.default_rng(7)                           # mismas estrías en cada render
+    streak_scale = smoothness
     lin = np.linspace(-1, 1, SS)
     x, y = np.meshgrid(lin, lin)
     # Coordenadas giradas: u a lo largo del disco, v perpendicular (v < 0 = arriba)
@@ -113,9 +118,27 @@ def render():
     return Image.fromarray((rgba * 255).round().astype(np.uint8))
 
 
+def avatar(size=256):
+    """El logo dentro de un círculo azul noche, con margen para que el disco quepa entero."""
+    logo = render(smoothness=0.4)
+    lin = np.linspace(-1, 1, SS)
+    x, y = np.meshgrid(lin, lin)
+    r = np.hypot(x, y - 0.2)
+    bg = np.dstack([np.full_like(r, c) for c in (0.07, 0.12, 0.29)]) * (1 - 0.75 * np.clip(r / 1.3, 0, 1))[..., None]
+    base = Image.fromarray((bg * 255).astype(np.uint8)).convert("RGBA")
+    inner = SS
+    base.alpha_composite(logo.resize((inner, inner), Image.LANCZOS), ((SS - inner) // 2, (SS - inner) // 2))
+    circle = Image.fromarray((smoothstep(1.0, 0.996, np.hypot(x, y)) * 255).astype(np.uint8))
+    base.putalpha(circle)
+    return base.resize((size, size), Image.LANCZOS)
+
+
 if __name__ == "__main__":
     img = render()
     for size in (512, 64):
         out = ROOT / "assets" / f"logo-{size}.png"
         img.resize((size, size), Image.LANCZOS).save(out, optimize=True)
         print("->", out.relative_to(ROOT))
+    out = ROOT / "assets" / "logo-avatar.png"
+    avatar().save(out, optimize=True)
+    print("->", out.relative_to(ROOT))

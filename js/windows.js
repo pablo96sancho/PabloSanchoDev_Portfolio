@@ -13,8 +13,8 @@ const MARGIN = 12;
 
 // Posición inicial de cada ventana: x e y son fracciones del escritorio libre
 const LAYOUT = {
-  finder:   { x: 0.05, y: 0.03, w: 760, h: 520 },
-  contact:  { x: 0.6,  y: 0.56, w: 560, h: 300 },
+  finder:   { x: 0.18, y: 0.03, w: 760, h: 520 }, // a la derecha del widget
+  contact:  { x: 0.66, y: 0.56, w: 560, h: 300 },
   detail:   { x: 0.58, y: 0.12, w: 460, h: null }, // null: alto según el contenido
 };
 

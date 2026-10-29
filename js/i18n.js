@@ -23,10 +23,7 @@ const TEXTS = {
     "finder.back": "Atrás",
     "finder.forward": "Adelante",
 
-    "widget.title": "Ahora mismo",
-    "widget.study": "Estudiando DAM",
-    "widget.build": "Construyendo UnRecent",
-    "widget.place": "Valencia, España",
+    "widget.title": "Últimas versiones",
 
     "about.role": "Desarrollador de apps · Estudiante de DAM",
     "about.lead": "Hago apps para macOS que resuelven cosas pequeñas del día a día, y webs que funcionan de verdad: con pagos, descargas y usuarios reales.",
@@ -119,10 +116,7 @@ const TEXTS = {
     "finder.back": "Back",
     "finder.forward": "Forward",
 
-    "widget.title": "Right now",
-    "widget.study": "Studying app development",
-    "widget.build": "Building UnRecent",
-    "widget.place": "Valencia, Spain",
+    "widget.title": "Latest releases",
 
     "about.role": "App developer · Multiplatform App Development student",
     "about.lead": "I build macOS apps that fix small everyday annoyances, and websites that work for real: payments, downloads and real users.",

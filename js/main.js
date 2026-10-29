@@ -3,7 +3,7 @@
  */
 
 const WALLPAPERS = ["assets/wallpapers/gargantua.jpg", "assets/wallpapers/singularity.jpg"];
-const START_WINDOWS = ["finder", "contact"];
+const START_WINDOWS = ["contact", "finder"]; // la última queda delante
 
 // ---------- Fondo de escritorio ----------
 function setWallpaper(index, animate) {
@@ -44,7 +44,7 @@ function initParallax() {
   });
 }
 
-// ---------- Reloj de la barra de menú y del widget ----------
+// ---------- Reloj de la barra de menú ----------
 function updateClock() {
   const now = new Date();
   const locale = I18N.lang === "es" ? "es-ES" : "en-US";
@@ -53,7 +53,6 @@ function updateClock() {
   const clock = document.getElementById("clock");
   clock.textContent = `${day}  ${time}`;
   clock.dateTime = now.toISOString();
-  document.getElementById("widget-time").textContent = time;
 }
 
 // ---------- Clics (un solo listener para toda la página) ----------
@@ -123,6 +122,7 @@ function init() {
   initEvents();
   Dock.init();
   Terminal.init();
+  Releases.init();
   Windows.enableDragging();
 
   updateClock();

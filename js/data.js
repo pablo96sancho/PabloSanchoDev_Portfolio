@@ -22,6 +22,7 @@ const PROJECTS = [
     tech: ["Swift", "macOS"],
     repo: `${GITHUB}/CleanBRUH`,
     download: dmg("CleanBRUH"),
+    release: { version: "v1.1", date: "2026-08-21" }, // respaldo si GitHub no responde
   },
   {
     id: "cafelero",
@@ -33,6 +34,7 @@ const PROJECTS = [
     tech: ["Swift", "macOS"],
     repo: `${GITHUB}/Cafelero`,
     download: dmg("Cafelero"),
+    release: { version: "v1.1.0", date: "2026-08-19" }, // respaldo si GitHub no responde
   },
   {
     id: "convertbruh",
@@ -44,6 +46,7 @@ const PROJECTS = [
     tech: ["Swift", "FFmpeg", "macOS"],
     repo: `${GITHUB}/ConvertBRUH`,
     download: dmg("ConvertBRUH"),
+    release: { version: "v1.6", date: "2026-10-27" }, // respaldo si GitHub no responde
   },
   {
     id: "unrecent",

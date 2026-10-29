@@ -29,10 +29,10 @@
   overflow: hidden;
 }
 
+/* logo-avatar.png ya trae el fondo y el círculo (tools/render_logo.py) */
 .about__avatar img {
-  width: 116%;
-  height: 116%;
-  max-width: none;
+  width: 100%;
+  height: 100%;
 }
 
 .about__name {
