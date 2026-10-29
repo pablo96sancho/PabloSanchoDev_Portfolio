@@ -1,0 +1,247 @@
+/* ==========================================================================
+   Ventanas: cristal, semáforos, barra de título y Finder
+   ========================================================================== */
+
+.window {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  min-width: 320px;
+  overflow: hidden;
+  border-radius: var(--radius-window);
+  background: var(--glass-window);
+  border: 0.5px solid var(--glass-stroke);
+  box-shadow: inset 0 1px 0 var(--glass-shine), var(--shadow-window);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  will-change: transform;
+}
+
+.window.is-open {
+  display: flex;
+}
+
+.window.is-minimized {
+  display: none;
+}
+
+/* Ventanas que no están al frente: un poco más apagadas, como en macOS */
+.window:not(.is-focused) {
+  box-shadow: inset 0 1px 0 var(--glass-shine), 0 0 0 0.5px rgba(0, 0, 0, 0.6), 0 14px 40px rgba(0, 0, 0, 0.4);
+}
+
+.window.is-resizing {
+  transition:
+    left 0.3s cubic-bezier(.2, .8, .2, 1),
+    top 0.3s cubic-bezier(.2, .8, .2, 1),
+    width 0.3s cubic-bezier(.2, .8, .2, 1),
+    height 0.3s cubic-bezier(.2, .8, .2, 1);
+}
+
+.window__drag {
+  cursor: default;
+  user-select: none;
+}
+
+/* ---------- Semáforos ---------- */
+.traffic {
+  display: flex;
+  gap: 8px;
+}
+
+.traffic__btn {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.25);
+}
+
+.traffic__btn--close { background: var(--close); }
+.traffic__btn--min { background: var(--minimize); }
+.traffic__btn--max { background: var(--maximize); }
+
+.window:not(.is-focused) .traffic__btn {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.traffic:hover .traffic__btn--close { background: var(--close); }
+.traffic:hover .traffic__btn--min { background: var(--minimize); }
+.traffic:hover .traffic__btn--max { background: var(--maximize); }
+
+/* Símbolos que aparecen al pasar el ratón */
+.traffic__btn::before {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+}
+
+.traffic__btn--close::before { content: "×"; }
+.traffic__btn--min::before { content: "−"; }
+.traffic__btn--max::before { content: "+"; }
+
+.traffic:hover .traffic__btn::before {
+  opacity: 1;
+}
+
+/* ---------- Barra de título (Terminal y ficha) ---------- */
+.window__titlebar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: none;
+  height: 42px;
+  padding: 0 16px;
+}
+
+.window__title {
+  position: absolute;
+  inset: 0 90px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+
+/* ---------- Finder ---------- */
+.window.finder.is-open {
+  display: grid;
+  grid-template-columns: 196px minmax(0, 1fr);
+}
+
+.finder__sidebar {
+  margin: 8px 0 8px 8px;
+  padding: 12px 10px;
+  overflow-y: auto;
+  border-radius: var(--radius-pane);
+  background: var(--glass-sidebar);
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.finder__sidebar .traffic {
+  padding: 2px 6px 16px;
+}
+
+.sidebar__heading {
+  padding: 10px 8px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-3);
+}
+
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 5px 8px;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 13px;
+  text-align: left;
+  transition: background 0.12s;
+}
+
+.sidebar__item:hover {
+  background: var(--hover);
+  text-decoration: none;
+}
+
+.sidebar__item[aria-current="page"] {
+  background: var(--selected);
+}
+
+.sidebar__glyph svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.finder__main {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.finder__toolbar {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: 14px;
+  height: 56px;
+  padding: 0 20px;
+}
+
+.finder__nav {
+  display: flex;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.finder__nav button {
+  width: 28px;
+  border-radius: 999px;
+  color: var(--text);
+  transition: background 0.12s;
+}
+
+.finder__nav button:hover:not(:disabled) {
+  background: var(--hover);
+}
+
+.finder__nav button:disabled {
+  color: var(--text-3);
+  cursor: default;
+}
+
+.finder__title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.finder__content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 4px 24px 24px;
+}
+
+.finder__status {
+  flex: none;
+  padding: 6px;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+  font-size: 11px;
+  color: var(--text-3);
+  text-align: center;
+}
+
+.finder__status:empty {
+  display: none;
+}
+
+/* Barras de scroll finas, como en macOS */
+.window * {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}

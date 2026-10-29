@@ -1,0 +1,199 @@
+/* ==========================================================================
+   Base: colores, tipografía y piezas pequeñas que se usan en toda la web
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* Colores de las ventanas del README */
+  --window: #1E1E1E;
+  --sidebar: #2B2B2D;
+  --accent: #0A84FF;
+  --close: #FF5F57;
+  --minimize: #FEBC2E;
+  --maximize: #28C840;
+  --green: #30D158;
+  --orange: #FF9F0A;
+  --purple: #BF5AF2;
+
+  /* Cristal (estilo macOS 26): el mismo color, translúcido y con desenfoque */
+  --glass-window: rgba(30, 30, 30, 0.68);
+  --glass-sidebar: rgba(58, 58, 62, 0.42);
+  --glass-bar: rgba(20, 20, 24, 0.35);
+  --glass-stroke: rgba(255, 255, 255, 0.13);
+  --glass-shine: rgba(255, 255, 255, 0.16);
+  --glass-blur: blur(36px) saturate(170%);
+
+  --text: rgba(255, 255, 255, 0.92);
+  --text-2: rgba(235, 235, 245, 0.62);
+  --text-3: rgba(235, 235, 245, 0.38);
+  --hover: rgba(255, 255, 255, 0.07);
+  --selected: rgba(255, 255, 255, 0.11);
+
+  --radius-window: 26px;
+  --radius-pane: 18px;
+  --radius-control: 10px;
+
+  --menubar-h: 32px; /* igual que MENUBAR_H en js/windows.js */
+  --dock-icon: 54px;
+
+  --shadow-window:
+    0 0 0 0.5px rgba(0, 0, 0, 0.7),
+    0 24px 70px rgba(0, 0, 0, 0.55),
+    0 8px 24px rgba(0, 0, 0, 0.3);
+
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --mono: "SF Mono", ui-monospace, "JetBrains Mono", Menlo, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.is-dragging {
+  user-select: none;
+  cursor: default;
+}
+
+h1, h2, h3, p, ul, dl, dd {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ---------- Botones ---------- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0.5px 0 var(--glass-shine);
+  color: var(--text);
+  font-weight: 500;
+  font-size: 13px;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.button:hover {
+  background: rgba(255, 255, 255, 0.16);
+  text-decoration: none;
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+.button--primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.button--primary:hover {
+  background: #2491FF;
+}
+
+/* ---------- Etiquetas de estado ---------- */
+.badge {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.badge--available {
+  color: var(--green);
+  background: rgba(48, 209, 88, 0.14);
+}
+
+.badge--soon {
+  color: var(--orange);
+  background: rgba(255, 159, 10, 0.14);
+}
+
+.badge--private {
+  color: #9FB6FF;
+  background: rgba(10, 132, 255, 0.16);
+}
+
+/* ---------- Chips de tecnologías ---------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 0.5px solid var(--glass-stroke);
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+/* ---------- Puntos de color ---------- */
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.dot--green { background: var(--green); box-shadow: 0 0 8px var(--green); }
+.dot--blue { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+.dot--orange { background: var(--orange); box-shadow: 0 0 8px var(--orange); }

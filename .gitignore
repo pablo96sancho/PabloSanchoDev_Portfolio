@@ -1,0 +1,5 @@
+.DS_Store
+# notas internas, no publicar
+CLAUDE.md
+# capturas de las pruebas con el navegador
+.playwright-mcp/

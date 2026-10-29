@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pablo Sancho — Developer</title>
+  <meta name="description" content="Pablo Sancho: desarrollador de aplicaciones para macOS y estudiante de DAM en Valencia.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="assets/logo-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/logo-512.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/desktop.css">
+  <link rel="stylesheet" href="css/window.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/terminal.css">
+  <link rel="stylesheet" href="css/mobile.css">
+</head>
+<body>
+
+  <!-- Fondo de escritorio (se cambia desde la barra de menú) -->
+  <div class="wallpaper" id="wallpaper" aria-hidden="true"></div>
+
+  <!-- ============ Barra de menú ============ -->
+  <header class="menubar">
+    <div class="menubar__left">
+      <img class="menubar__logo" src="assets/logo-64.png" alt="" width="22" height="22">
+      <strong class="menubar__app">Pablo Sancho</strong>
+      <nav class="menubar__menu" aria-label="Secciones">
+        <button type="button" data-open="about" data-i18n="menu.about">Sobre mí</button>
+        <button type="button" data-open="projects" data-i18n="menu.projects">Proyectos</button>
+        <button type="button" data-open="stack" data-i18n="menu.stack">Stack</button>
+        <button type="button" data-open="contact" data-i18n="menu.contact">Contacto</button>
+      </nav>
+    </div>
+    <div class="menubar__right">
+      <button type="button" class="menubar__icon" id="wallpaper-btn" data-i18n-aria="menu.wallpaper" aria-label="Cambiar fondo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><ellipse cx="12" cy="12" rx="10" ry="3" transform="rotate(-18 12 12)"/></svg>
+      </button>
+      <div class="lang" role="group" data-i18n-aria="menu.language" aria-label="Idioma">
+        <button type="button" data-lang="es">ES</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <time class="menubar__clock" id="clock"></time>
+    </div>
+  </header>
+
+  <!-- ============ Escritorio ============ -->
+  <main class="desktop" id="desktop">
+
+    <!-- Widget del escritorio -->
+    <aside class="widget" aria-labelledby="widget-title">
+      <p class="widget__label" id="widget-title" data-i18n="widget.title">Ahora mismo</p>
+      <p class="widget__time" id="widget-time">00:00</p>
+      <ul class="widget__list">
+        <li><span class="dot dot--green"></span><span data-i18n="widget.study">Estudiando DAM</span></li>
+        <li><span class="dot dot--blue"></span><span data-i18n="widget.build">Construyendo UnRecent</span></li>
+        <li><span class="dot dot--orange"></span><span data-i18n="widget.place">Valencia, España</span></li>
+      </ul>
+    </aside>
+
+    <!-- ---------- Ventana Finder: Sobre mí, Proyectos y Stack ---------- -->
+    <!-- La barra lateral cambia de panel dentro de la misma ventana (js/finder.js) -->
+    <section class="window finder" id="win-finder" data-window="finder" aria-labelledby="finder-title">
+      <div class="finder__sidebar window__drag" id="finder-sidebar"></div>
+      <div class="finder__main">
+        <div class="finder__toolbar window__drag">
+          <div class="finder__nav">
+            <button type="button" id="finder-back" data-i18n-aria="finder.back" aria-label="Atrás">‹</button>
+            <button type="button" id="finder-forward" data-i18n-aria="finder.forward" aria-label="Adelante">›</button>
+          </div>
+          <h2 class="finder__title" id="finder-title"></h2>
+        </div>
+        <div class="finder__content" id="finder-content">
+          <div class="pane" data-pane="about">
+            <div class="about">
+              <div class="about__head">
+                <div class="about__avatar" aria-hidden="true"><img src="assets/logo-512.png" alt=""></div>
+                <div>
+                  <h1 class="about__name">Pablo Sancho</h1>
+                  <p class="about__role" data-i18n="about.role">Desarrollador de apps · Estudiante de DAM</p>
+                </div>
+              </div>
+              <p class="about__lead" data-i18n="about.lead"></p>
+              <div class="about__actions">
+                <button type="button" class="button button--primary" data-open="projects" data-i18n="about.ctaProjects">Ver proyectos</button>
+                <button type="button" class="button" data-open="contact" data-i18n="about.ctaContact">Contactar</button>
+                <span class="about__socials">
+                  <a class="social" href="https://github.com/pablo96sancho" target="_blank" rel="noopener" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"/></svg>
+                  </a>
+                  <a class="social" href="https://www.linkedin.com/in/pablo-sancho-alegre/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+                  </a>
+                  <a class="social" href="mailto:pablo96sancho@gmail.com" data-i18n-aria="about.email" aria-label="Correo">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="social__stroke"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>
+                  </a>
+                </span>
+              </div>
+              <p data-i18n="about.p1"></p>
+              <p data-i18n="about.p2"></p>
+              <p data-i18n="about.p3"></p>
+              <dl class="info">
+                <div><dt data-i18n="about.k.studies"></dt><dd data-i18n="about.v.studies"></dd></div>
+                <div><dt data-i18n="about.k.training"></dt><dd data-i18n="about.v.training"></dd></div>
+                <div><dt data-i18n="about.k.now"></dt><dd data-i18n="about.v.now"></dd></div>
+                <div><dt data-i18n="about.k.place"></dt><dd data-i18n="about.v.place"></dd></div>
+                <div><dt data-i18n="about.k.languages"></dt><dd data-i18n="about.v.languages"></dd></div>
+              </dl>
+            </div>
+          </div>
+          <div class="pane" data-pane="projects" hidden>
+            <div id="featured"></div>
+            <ul class="icon-grid" id="projects-grid"></ul>
+          </div>
+          <div class="pane" data-pane="stack" id="stack-content" hidden></div>
+        </div>
+        <p class="finder__status" id="finder-status"></p>
+      </div>
+    </section>
+
+    <!-- ---------- Ventana Terminal: Contacto ---------- -->
+    <section class="window terminal" id="win-contact" data-window="contact" aria-labelledby="contact-title">
+      <div class="window__titlebar window__drag">
+        <div class="traffic"></div>
+        <h2 class="window__title" id="contact-title">pablo — -zsh — 80×24</h2>
+      </div>
+      <div class="terminal__body" id="terminal">
+        <div class="terminal__output" id="terminal-output" aria-live="polite"></div>
+        <form class="terminal__line" id="terminal-form" autocomplete="off">
+          <label class="terminal__prompt" for="terminal-input">pablo@MacBookPro ~ %</label>
+          <input class="terminal__input" id="terminal-input" type="text" spellcheck="false" autocapitalize="off" enterkeyhint="send">
+        </form>
+      </div>
+      <div class="terminal__chips" id="terminal-chips"></div>
+    </section>
+
+    <!-- ---------- Ventana de detalle de un proyecto ---------- -->
+    <section class="window detail" id="win-detail" data-window="detail" aria-labelledby="detail-title">
+      <div class="window__titlebar window__drag">
+        <div class="traffic"></div>
+        <h2 class="window__title" id="detail-title"></h2>
+      </div>
+      <div class="detail__body" id="detail-body"></div>
+    </section>
+  </main>
+
+  <!-- ============ Dock ============ -->
+  <nav class="dock" id="dock" aria-label="Dock">
+    <ul class="dock__list">
+      <li><button type="button" class="dock__item" data-open="about" data-i18n-aria="menu.about" aria-label="Sobre mí">
+        <span class="dock__icon icon icon--about"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c.8-4.2 3.8-6.5 7.5-6.5s6.7 2.3 7.5 6.5"/></svg></span>
+      </button></li>
+      <li><button type="button" class="dock__item" data-open="projects" data-i18n-aria="menu.projects" aria-label="Proyectos">
+        <span class="dock__icon icon icon--projects"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5a2 2 0 0 1 2-2h4.2l2 2H19a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+      </button></li>
+      <li><button type="button" class="dock__item" data-open="stack" data-i18n-aria="menu.stack" aria-label="Stack">
+        <span class="dock__icon icon icon--stack"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l8.5 4.5-8.5 4.5L3.5 8z"/><path d="M3.5 12.2l8.5 4.5 8.5-4.5"/><path d="M3.5 16.2l8.5 4.5 8.5-4.5"/></svg></span>
+      </button></li>
+      <li><button type="button" class="dock__item" data-open="contact" data-i18n-aria="menu.contact" aria-label="Contacto">
+        <span class="dock__icon icon icon--terminal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8l4 4-4 4"/><path d="M12.5 16.5H18"/></svg></span>
+      </button></li>
+      <li class="dock__divider" aria-hidden="true"></li>
+      <!-- Las apps de los proyectos se añaden aquí desde js/render.js -->
+    </ul>
+  </nav>
+
+  <script src="js/i18n.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/render.js" defer></script>
+  <script src="js/windows.js" defer></script>
+  <script src="js/finder.js" defer></script>
+  <script src="js/dock.js" defer></script>
+  <script src="js/terminal.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

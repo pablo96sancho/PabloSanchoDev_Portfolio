@@ -1,0 +1,322 @@
+/* ==========================================================================
+   Escritorio: fondo, barra de menú, widget y Dock
+   ========================================================================== */
+
+/* ---------- Fondo ---------- */
+.wallpaper {
+  position: fixed;
+  inset: -30px;
+  z-index: 0;
+  transform: translate3d(calc(var(--px, 0) * -18px), calc(var(--py, 0) * -12px), 0) scale(1.02);
+  transition: transform 0.6s cubic-bezier(.2, .8, .2, 1);
+}
+
+.wallpaper__layer {
+  position: absolute;
+  inset: 0;
+  background: #000 center / cover no-repeat;
+}
+
+/* Viñeta suave para que el texto se lea sobre el fondo */
+.wallpaper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.45) 100%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.35), transparent 12%);
+}
+
+/* ---------- Barra de menú ---------- */
+.menubar {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--menubar-h);
+  padding: 0 10px;
+  background: var(--glass-bar);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  font-size: 13px;
+}
+
+.menubar__left,
+.menubar__right,
+.menubar__menu {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.menubar__logo {
+  margin: 0 8px 0 6px;
+}
+
+.menubar__app {
+  padding: 2px 9px;
+  font-weight: 700;
+}
+
+.menubar__menu button,
+.menubar__icon {
+  padding: 2px 9px;
+  border-radius: 6px;
+  transition: background 0.12s;
+}
+
+.menubar__menu button:hover,
+.menubar__icon:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.menubar__icon {
+  display: grid;
+  place-items: center;
+  height: 24px;
+}
+
+.menubar__icon svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+}
+
+.menubar__clock {
+  padding: 2px 9px;
+  font-variant-numeric: tabular-nums;
+  white-space: pre;
+}
+
+/* Selector de idioma ES / EN */
+.lang {
+  display: flex;
+  margin: 0 4px;
+  padding: 2px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.lang button {
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--text-2);
+  transition: background 0.15s, color 0.15s;
+}
+
+.lang button[aria-pressed="true"] {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+}
+
+/* ---------- Zona de ventanas ---------- */
+.desktop {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+}
+
+/* ---------- Widget ---------- */
+.widget {
+  position: absolute;
+  left: 28px;
+  bottom: 112px;
+  width: 230px;
+  padding: 16px 18px 18px;
+  border-radius: 24px;
+  background: rgba(20, 20, 26, 0.38);
+  border: 0.5px solid var(--glass-stroke);
+  box-shadow: inset 0 1px 0 var(--glass-shine), 0 12px 40px rgba(0, 0, 0, 0.35);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  animation: fade-up 0.8s 0.6s both cubic-bezier(.2, .8, .2, 1);
+}
+
+.widget__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.widget__time {
+  margin: 2px 0 10px;
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.widget__list {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.widget__list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+}
+
+/* ---------- Dock ---------- */
+.dock {
+  position: fixed;
+  left: 50%;
+  bottom: 10px;
+  z-index: 1000;
+  transform: translateX(-50%);
+  padding: 8px 10px;
+  border-radius: 28px;
+  background: rgba(40, 40, 46, 0.35);
+  border: 0.5px solid var(--glass-stroke);
+  box-shadow: inset 0 1px 0 var(--glass-shine), 0 10px 40px rgba(0, 0, 0, 0.4);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  animation: dock-in 0.7s 0.1s both cubic-bezier(.2, .8, .2, 1);
+}
+
+@keyframes dock-in {
+  from { opacity: 0; transform: translate(-50%, 40px); }
+}
+
+.dock__list {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: var(--dock-icon);
+}
+
+.dock__item {
+  --s: 1;
+  position: relative;
+  display: block;
+  width: calc(var(--dock-icon) * var(--s));
+  height: calc(var(--dock-icon) * var(--s));
+  transition: width 0.18s ease-out, height 0.18s ease-out;
+}
+
+.dock__icon {
+  width: 100%;
+  height: 100%;
+}
+
+img.dock__icon {
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
+}
+
+/* Punto de "app abierta" */
+.dock__item::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.dock__item.is-running::after {
+  opacity: 1;
+}
+
+/* Nombre encima del icono al pasar el ratón */
+.dock__item::before {
+  content: attr(aria-label);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 14px);
+  transform: translate(-50%, 4px);
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgba(30, 30, 34, 0.85);
+  border: 0.5px solid var(--glass-stroke);
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.dock__item:hover::before,
+.dock__item:focus-visible::before {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Rebote al abrir */
+.dock__item.is-launching .dock__icon {
+  animation: dock-bounce 0.9s cubic-bezier(.3, .7, .4, 1);
+}
+
+@keyframes dock-bounce {
+  0%, 50%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-22px); }
+  75% { transform: translateY(-10px); }
+}
+
+.dock__divider {
+  align-self: center;
+  width: 1px;
+  height: calc(var(--dock-icon) * 0.75);
+  margin: 0 4px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ---------- Iconos de las secciones (Dock) ---------- */
+.icon {
+  display: grid;
+  place-items: center;
+  border-radius: 23%;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.12),
+    0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.icon svg {
+  width: 56%;
+  height: 56%;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon--about { background: linear-gradient(180deg, #64D2FF, #0A6CFF); }
+.icon--projects { background: linear-gradient(180deg, #7CC8FF, #1C7FE6); }
+.icon--projects svg { fill: rgba(255, 255, 255, 0.92); stroke: none; }
+.icon--stack { background: linear-gradient(180deg, #D18BFF, #6E35D9); }
+.icon--terminal { background: linear-gradient(180deg, #3A3A3E, #121214); }
+.icon--terminal svg { stroke: #E6E6E6; stroke-width: 2.2; }
+
+@media (prefers-reduced-motion: reduce) {
+  .wallpaper,
+  .dock__item {
+    transition: none;
+  }
+
+  .widget,
+  .dock {
+    animation: none;
+  }
+}
