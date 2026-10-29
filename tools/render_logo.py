@@ -1,8 +1,7 @@
 """
 Renderiza el logo (agujero negro) como PNG con brillo real.
 
-  python3 tools/render_logo.py   -> assets/logo-512.png, assets/logo-64.png
-                                    y assets/logo-avatar.png (versión para el círculo de Sobre mí)
+  python3 tools/render_logo.py   -> assets/logo-512.png y assets/logo-64.png
 
 Necesita numpy y Pillow. Cómo está montado:
   - Disco de acreción: banda fina que cruza por delante del horizonte, con estrías
@@ -118,27 +117,9 @@ def render(smoothness=1.0):
     return Image.fromarray((rgba * 255).round().astype(np.uint8))
 
 
-def avatar(size=256):
-    """El logo dentro de un círculo azul noche, con margen para que el disco quepa entero."""
-    logo = render(smoothness=0.4)
-    lin = np.linspace(-1, 1, SS)
-    x, y = np.meshgrid(lin, lin)
-    r = np.hypot(x, y - 0.2)
-    bg = np.dstack([np.full_like(r, c) for c in (0.07, 0.12, 0.29)]) * (1 - 0.75 * np.clip(r / 1.3, 0, 1))[..., None]
-    base = Image.fromarray((bg * 255).astype(np.uint8)).convert("RGBA")
-    inner = SS
-    base.alpha_composite(logo.resize((inner, inner), Image.LANCZOS), ((SS - inner) // 2, (SS - inner) // 2))
-    circle = Image.fromarray((smoothstep(1.0, 0.996, np.hypot(x, y)) * 255).astype(np.uint8))
-    base.putalpha(circle)
-    return base.resize((size, size), Image.LANCZOS)
-
-
 if __name__ == "__main__":
     img = render()
     for size in (512, 64):
         out = ROOT / "assets" / f"logo-{size}.png"
         img.resize((size, size), Image.LANCZOS).save(out, optimize=True)
         print("->", out.relative_to(ROOT))
-    out = ROOT / "assets" / "logo-avatar.png"
-    avatar().save(out, optimize=True)
-    print("->", out.relative_to(ROOT))
