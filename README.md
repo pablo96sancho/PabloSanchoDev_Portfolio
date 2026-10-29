@@ -48,7 +48,7 @@ frameworks ni librerías.
 | <img src="assets/apps/convertbruh.png" width="32" /> | [ConvertBRUH](https://github.com/pablo96sancho/ConvertBRUH) | Convierte archivos desde el Finder |
 | <img src="assets/apps/unrecent.png" width="32" /> | UnRecent | Quita archivos de Recientes sin borrarlos · *próximamente* |
 | <img src="assets/apps/djokovox.png" width="32" /> | Djoko_vox | Plugin de audio para grabar voces (C++, JUCE) · *próximamente* |
-| <img src="assets/apps/tienda.png" width="32" /> | Tienda online | Pagos con Stripe, archivos en Cloudflare R2 y descargas firmadas |
+| <img src="assets/apps/tienda.png" width="32" /> | djokobeatz.com | Pagos con Stripe, archivos en Cloudflare R2 y descargas firmadas (pagos desactivados por ahora; la web es mi portfolio musical) |
 
 ## Cómo está hecha
 

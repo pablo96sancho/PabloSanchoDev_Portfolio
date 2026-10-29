@@ -48,7 +48,7 @@ no libraries.
 | <img src="assets/apps/convertbruh.png" width="32" /> | [ConvertBRUH](https://github.com/pablo96sancho/ConvertBRUH) | Converts files right from Finder |
 | <img src="assets/apps/unrecent.png" width="32" /> | UnRecent | Removes files from Recents without deleting them · *coming soon* |
 | <img src="assets/apps/djokovox.png" width="32" /> | Djoko_vox | Vocal recording audio plugin (C++, JUCE) · *coming soon* |
-| <img src="assets/apps/tienda.png" width="32" /> | Online store | Stripe payments, files on Cloudflare R2 and signed downloads |
+| <img src="assets/apps/tienda.png" width="32" /> | djokobeatz.com | Stripe payments, files on Cloudflare R2 and signed downloads (payments switched off for now; the site is my music portfolio) |
 
 ## How it's built
 

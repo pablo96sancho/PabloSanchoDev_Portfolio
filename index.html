@@ -116,6 +116,13 @@
             <ul class="icon-grid" id="projects-grid"></ul>
           </div>
           <div class="pane" data-pane="stack" id="stack-content" hidden></div>
+          <div class="pane" data-pane="trash" hidden>
+            <div class="trash-bar">
+              <p class="trash-bar__text" id="trash-text" data-i18n="trash.intro"></p>
+              <button type="button" class="button" id="trash-empty" data-i18n="trash.empty">Vaciar</button>
+            </div>
+            <ul class="icon-grid icon-grid--trash" id="trash-grid"></ul>
+          </div>
         </div>
         <p class="finder__status" id="finder-status"></p>
       </div>
@@ -164,6 +171,10 @@
       </button></li>
       <li class="dock__divider" aria-hidden="true"></li>
       <!-- Las apps de los proyectos se añaden aquí desde js/render.js -->
+      <li class="dock__divider" id="dock-trash-divider" aria-hidden="true"></li>
+      <li><button type="button" class="dock__item" data-open="trash" data-i18n-aria="menu.trash" aria-label="Papelera">
+        <img class="dock__icon" id="dock-trash" src="assets/trash.png" alt="" draggable="false">
+      </button></li>
     </ul>
   </nav>
 

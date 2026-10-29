@@ -218,6 +218,43 @@
   font-weight: 600;
 }
 
+/* ---------- Papelera ---------- */
+.trash-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.trash-bar__text {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.icon-grid--trash {
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+}
+
+/* Los iconos de la Papelera salen apagados y recuperan el color al pasar el ratón */
+.icon-grid--trash img {
+  filter: grayscale(0.85) brightness(0.8) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+  transition: transform 0.25s cubic-bezier(.2, .8, .2, 1), filter 0.25s;
+}
+
+.icon-grid--trash .icon-grid__item:hover img {
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+.icon-grid__tagline {
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--text-2);
+  text-align: center;
+}
+
 /* ---------- Stack ---------- */
 .stack-legend {
   display: flex;

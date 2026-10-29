@@ -10,7 +10,7 @@ const LINKEDIN = "https://www.linkedin.com/in/pablo-sancho-alegre/";
 // Enlace de descarga directa del instalador de una app
 const dmg = (app) => `${GITHUB}/${app}/releases/latest/download/${app}-Installer.dmg`;
 
-// status: "available" | "soon" | "private"
+// status: "available" | "soon" | "private" | "discarded" (solo en TRASH)
 const PROJECTS = [
   {
     id: "cleanbruh",
@@ -68,14 +68,36 @@ const PROJECTS = [
   },
   {
     id: "tienda",
-    name: { es: "Tienda online", en: "Online store" },
+    name: "djokobeatz.com",
     icon: "assets/apps/tienda.png",
     status: "private",
     featured: true, // sale en grande arriba de Proyectos
-    tagline: { es: "Pagos con Stripe, archivos en R2 y descargas firmadas.", en: "Stripe payments, files on R2 and signed downloads." },
-    description: { es: "La tienda de djokobeatz.com, hecha desde cero: carrito, pago con Stripe Checkout y entrega automática con enlaces de descarga firmados que caducan a los 10 minutos, servidos desde un bucket privado de Cloudflare R2. Precios, licencias y archivos se validan siempre en el servidor, y se compra sin crear cuenta.", en: "The djokobeatz.com store, built from scratch: cart, Stripe Checkout payments and automatic delivery through signed download links that expire after 10 minutes, served from a private Cloudflare R2 bucket. Prices, licences and files are always validated on the server, and you can buy without an account." },
+    tagline: { es: "Stripe, R2 y descargas firmadas, listo para activarse.", en: "Stripe, R2 and signed downloads, ready to switch on." },
+    description: { es: "La web de djokobeatz.com, hecha desde cero con una tienda completa: carrito, pago con Stripe Checkout y entrega automática con enlaces de descarga firmados que caducan a los 10 minutos, servidos desde un bucket privado de Cloudflare R2. Precios, licencias y archivos se validan siempre en el servidor, y se compra sin crear cuenta. Ahora mismo los pagos están desactivados y la web es el portfolio de mi faceta de productor musical, pero la tienda sigue configurada y lista para activarse.", en: "The djokobeatz.com website, built from scratch with a complete store: cart, Stripe Checkout payments and automatic delivery through signed download links that expire after 10 minutes, served from a private Cloudflare R2 bucket. Prices, licences and files are always validated on the server, and you can buy without an account. Payments are switched off for now and the site works as the portfolio for my music production work, but the store is still set up and ready to go live." },
     tech: ["Next.js", "TypeScript", "Stripe", "Cloudflare R2", "Vercel"],
     site: "https://djokobeatz.com",
+  },
+];
+
+// Papelera: proyectos que empecé y dejé a medias (se abren desde el Dock)
+const TRASH = [
+  {
+    id: "notchvault",
+    name: "NotchVault",
+    icon: "assets/apps/notchvault.png",
+    status: "discarded",
+    tagline: { es: "El notch del Mac, pero útil. Se quedó a medio pulir.", en: "The Mac's notch, but useful. Never got its final polish." },
+    description: { es: "Convertía el notch del MacBook en un panel que se despliega al pasar el ratón: reproductor con la carátula de lo que suena, historial del portapapeles, últimas capturas, una bandeja para soltar archivos y estadísticas del sistema. Llegó a funcionar, pero se quedó a medias con el último arreglo pendiente: que el panel pareciera parte del propio notch.", en: "It turned the MacBook's notch into a panel that drops down on hover: a player with the current song's artwork, clipboard history, recent screenshots, a tray to drop files on and system stats. It worked, but it was left unfinished with one last fix pending: making the panel look like part of the notch itself." },
+    tech: ["Swift", "SwiftUI", "AppKit"],
+  },
+  {
+    id: "scansentry",
+    name: "ScanSentry",
+    icon: "assets/apps/scansentry.png",
+    status: "discarded",
+    tagline: { es: "Escudo para auditorías. No pasó del plano.", en: "A shield for security audits. Never left the drawing board." },
+    description: { es: "Una pantalla de bloqueo para auditorías de ciberseguridad: tapaba todos los monitores, pedía contraseña (guardada como hash con salt en el Llavero, nunca en texto plano) y evitaba que el Mac se suspendiera para que los escaneos de Nmap siguieran corriendo. La diseñé entera, pero se quedó en el plan.", en: "A lock screen for cybersecurity audits: it covered every display, asked for a password (stored as a salted hash in the Keychain, never in plain text) and kept the Mac from sleeping so Nmap scans could keep running. I designed the whole thing, but it never got past the plan." },
+    tech: ["Swift", "SwiftUI", "IOKit", "Keychain"],
   },
 ];
 

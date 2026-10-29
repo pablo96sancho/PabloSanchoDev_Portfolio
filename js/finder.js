@@ -1,9 +1,9 @@
 /*
- * Finder: una sola ventana con tres paneles (Sobre mí, Proyectos y Stack).
+ * Finder: una sola ventana con cuatro paneles (Sobre mí, Proyectos, Stack y Papelera).
  * La barra lateral cambia de panel y las flechas ‹ › van atrás y adelante.
  */
 
-const SECTIONS = ["about", "projects", "stack"];
+const SECTIONS = ["about", "projects", "stack", "trash"];
 
 const Finder = {
   current: "about",
@@ -13,6 +13,10 @@ const Finder = {
   init() {
     document.getElementById("finder-back").addEventListener("click", () => this.go(-1));
     document.getElementById("finder-forward").addEventListener("click", () => this.go(1));
+    // "Vaciar" la Papelera nunca la vacía
+    document.getElementById("trash-empty").addEventListener("click", () => {
+      document.getElementById("trash-text").textContent = I18N.t("trash.refuse");
+    });
     this.show("about", false);
   },
 
@@ -55,6 +59,7 @@ const Finder = {
     const counts = {
       projects: PROJECTS.length,
       stack: STACK.reduce((total, group) => total + group.items.length, 0),
+      trash: TRASH.length,
     };
     const n = counts[this.current];
     document.getElementById("finder-status").textContent = n ? I18N.t("projects.items", { n }) : "";

@@ -11,6 +11,7 @@ const TEXTS = {
     "menu.projects": "Proyectos",
     "menu.stack": "Stack",
     "menu.contact": "Contacto",
+    "menu.trash": "Papelera",
     "menu.wallpaper": "Cambiar fondo de escritorio",
     "menu.language": "Idioma",
 
@@ -45,10 +46,14 @@ const TEXTS = {
     "about.v.languages": "Español · Inglés",
 
     "projects.items": "{n} elementos",
-    "projects.featured": "Proyecto destacado · En producción",
+    "projects.featured": "Proyecto destacado",
+    "trash.intro": "Proyectos que empecé y dejé a medias. De todos aprendí algo.",
+    "trash.empty": "Vaciar",
+    "trash.refuse": "Mejor no. Todavía les tengo cariño.",
     "status.available": "Disponible",
     "status.soon": "Próximamente",
     "status.private": "Código privado",
+    "status.discarded": "En la papelera",
 
     "detail.download": "Descargar .dmg",
     "detail.code": "Ver código",
@@ -57,6 +62,7 @@ const TEXTS = {
     "detail.unsigned": "La app no está firmada: la primera vez, clic derecho → Abrir.",
     "detail.soon": "Todavía no está disponible.",
     "detail.private": "El código es privado, pero la web está en marcha.",
+    "detail.discarded": "Proyecto abandonado: no hay descarga, solo recuerdos.",
     "detail.tech": "Tecnologías",
     "detail.more": "Más información",
 
@@ -104,6 +110,7 @@ const TEXTS = {
     "menu.projects": "Projects",
     "menu.stack": "Stack",
     "menu.contact": "Contact",
+    "menu.trash": "Trash",
     "menu.wallpaper": "Change wallpaper",
     "menu.language": "Language",
 
@@ -138,10 +145,14 @@ const TEXTS = {
     "about.v.languages": "Spanish · English",
 
     "projects.items": "{n} items",
-    "projects.featured": "Featured project · Live",
+    "projects.featured": "Featured project",
+    "trash.intro": "Projects I started and never finished. I learned something from each one.",
+    "trash.empty": "Empty",
+    "trash.refuse": "Better not. I'm still fond of them.",
     "status.available": "Available",
     "status.soon": "Coming soon",
     "status.private": "Private code",
+    "status.discarded": "In the Trash",
 
     "detail.download": "Download .dmg",
     "detail.code": "View code",
@@ -150,6 +161,7 @@ const TEXTS = {
     "detail.unsigned": "The app isn't signed: the first time, right-click → Open.",
     "detail.soon": "Not available yet.",
     "detail.private": "The code is private, but the site is live.",
+    "detail.discarded": "Abandoned project: no download, just memories.",
     "detail.tech": "Technologies",
     "detail.more": "More info",
 

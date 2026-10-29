@@ -1,6 +1,6 @@
 /*
  * Pinta en el HTML el contenido que sale de data.js y i18n.js:
- * semáforos de las ventanas, barra lateral del Finder, proyectos, stack,
+ * semáforos de las ventanas, barra lateral del Finder, proyectos, stack, papelera,
  * ficha de un proyecto y apps del Dock.
  */
 
@@ -100,6 +100,17 @@ function renderProjects() {
   ));
 }
 
+// Papelera: mismos iconos que Proyectos, pero apagados
+function renderTrash() {
+  document.getElementById("trash-grid").replaceChildren(...TRASH.map((p) =>
+    el("li", {},
+      el("button", { type: "button", class: "icon-grid__item", "data-project": p.id },
+        el("img", { src: p.icon, alt: "", width: 72, height: 72, draggable: "false" }),
+        el("span", { class: "icon-grid__name" }, I18N.pick(p.name)),
+        el("span", { class: "icon-grid__tagline" }, I18N.pick(p.tagline))))
+  ));
+}
+
 function renderStack() {
   const box = document.getElementById("stack-content");
   const legend = el("p", { class: "stack-legend" }, el("span", { class: "tech__learning" }), I18N.t("stack.legend"));
@@ -122,7 +133,7 @@ function renderStack() {
 
 // Rellena la ventana de detalle con el proyecto elegido
 function renderDetail(id) {
-  const p = PROJECTS.find((project) => project.id === id);
+  const p = [...PROJECTS, ...TRASH].find((project) => project.id === id);
   if (!p) return;
   document.getElementById("detail-title").textContent = I18N.pick(p.name);
 
@@ -141,6 +152,7 @@ function renderDetail(id) {
   if (p.status === "available") note = `${I18N.t("detail.requirements")}. ${I18N.t("detail.unsigned")}`;
   if (p.status === "soon") note = I18N.t("detail.soon");
   if (p.status === "private") note = I18N.t("detail.private");
+  if (p.status === "discarded") note = I18N.t("detail.discarded");
 
   const body = el("div", {},
     el("div", { class: "detail__head" },
@@ -162,12 +174,15 @@ function renderDetail(id) {
 
 function renderDockApps() {
   const list = document.querySelector(".dock__list");
+  const trash = document.getElementById("dock-trash-divider"); // las apps van antes de la Papelera
   list.querySelectorAll("[data-dock-app]").forEach((li) => li.remove());
   PROJECTS.filter((p) => p.icon.endsWith(".png")).forEach((p) => {
-    list.append(el("li", { "data-dock-app": "" },
+    trash.before(el("li", { "data-dock-app": "" },
       el("button", { type: "button", class: "dock__item", "data-project": p.id, "aria-label": I18N.pick(p.name) },
         el("img", { class: "dock__icon", src: p.icon, alt: "", draggable: "false" }))));
   });
+  // Como en macOS: la Papelera sale llena si tiene algo dentro
+  document.getElementById("dock-trash").src = TRASH.length ? "assets/trash-full.png" : "assets/trash.png";
 }
 
 function renderAll() {
@@ -176,6 +191,7 @@ function renderAll() {
   Finder.updateTexts();
   renderProjects();
   renderStack();
+  renderTrash();
   renderDockApps();
   const detail = document.getElementById("win-detail").dataset.showing;
   if (detail) renderDetail(detail);
