@@ -67,6 +67,15 @@ const PROJECTS = [
     tech: ["C++20", "JUCE 8", "VST3 · AU"],
   },
   {
+    id: "ghostverb",
+    name: "GhostVerb",
+    icon: "assets/apps/ghostverb.png",
+    status: "soon",
+    tagline: { es: "Plugin de audio: reverse reverb en un clic.", en: "Audio plugin: reverse reverb in one click." },
+    description: { es: "Crea solo el efecto reverse reverb, ese riser fantasma que sube justo antes de una palabra. Detecta las sílabas, le aplica reverb a la elegida, invierte la cola y la cuadra al tempo del DAW para que termine justo donde empieza la palabra. Añade curva de subida, tremolo sincronizado y efectos, y el resultado se arrastra al DAW como clip de audio. Usa una reverb FDN propia y tiene tests de DSP.", en: "Builds the reverse reverb effect for you: that ghostly riser that swells right before a word. It detects the syllables, adds reverb to the one you pick, reverses the tail and syncs it to the DAW's tempo so it ends exactly where the word starts. It adds a rise curve, tempo-synced tremolo and effects, and you drag the result into your DAW as an audio clip. It runs on a custom FDN reverb and has DSP tests." },
+    tech: ["C++20", "JUCE 8", "VST3 · AU"],
+  },
+  {
     id: "tienda",
     name: "djokobeatz.com",
     icon: "assets/apps/tienda.png",
