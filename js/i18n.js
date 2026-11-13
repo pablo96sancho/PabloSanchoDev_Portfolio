@@ -33,7 +33,7 @@ const TEXTS = {
     "about.email": "Correo",
     "about.p1": "Estudio Desarrollo de Aplicaciones Multiplataforma (DAM) en Valencia, aunque ya programaba mis propias herramientas antes de empezar. He publicado tres apps para Mac hechas en Swift, de código abierto y con instalador, y tengo tres más en camino: UnRecent y dos plugins de audio en C++, Djoko_vox y GhostVerb.",
     "about.p2": "Me gusta construir herramientas pequeñas que resuelven algo concreto: limpiar el teclado sin que se pulse nada, que la pantalla no se apague o convertir archivos sin abrir otra app. Todas nacen de algo que yo mismo echaba en falta en el Mac, y las comparto por si le sirven a alguien más.",
-    "about.p3": "Vengo del audio: soy Técnico Superior en Sonido y productor musical desde 2018, y de ahí me traigo cumplir plazos y cuidar cada detalle. Para mi música hice desde cero djokobeatz.com, con tienda, pagos y descargas seguras. Y del bootcamp de ciberseguridad de The Bridge, la costumbre de pensar en la seguridad desde el primer día.",
+    "about.p3": "Vengo del audio: soy Técnico Superior en Sonido y productor musical desde 2018. Gracias a la música estoy acostumbrado a ser organizado, cumplir plazos y cuidar cada detalle. Para mi música hice desde cero djokobeatz.com, con tienda, pagos y descargas seguras. Y del bootcamp de ciberseguridad de The Bridge, la costumbre de pensar en la seguridad desde el primer día.",
     "about.k.studies": "Estudios",
     "about.v.studies": "DAM · Desarrollo de Aplicaciones Multiplataforma",
     "about.k.training": "Formación",
