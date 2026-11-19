@@ -18,7 +18,13 @@ const LAYOUT = {
   detail:   { x: 0.58, y: 0.12, w: 460, h: null }, // null: alto según el contenido
 };
 
-const EASE = "cubic-bezier(.2, .8, .2, 1)";
+// Ventanas que se pueden redimensionar y su tamaño mínimo
+const RESIZABLE = {
+  finder:  { w: 560, h: 340 },
+  contact: { w: 380, h: 200 },
+};
+
+const EASE ="cubic-bezier(.2, .8, .2, 1)";
 
 const Windows = {
   z: 10,
@@ -238,5 +244,69 @@ const Windows = {
       if (!handle || e.target.closest("button, a")) return;
       this.toggleMaximize(handle.closest(".window"));
     });
+  },
+
+  // Redimensionar desde los bordes y las esquinas, como en macOS
+  enableResizing() {
+    const EDGES = ["n", "s", "e", "w", "ne", "nw", "se", "sw"];
+    for (const [id, min] of Object.entries(RESIZABLE)) {
+      const win = this.get(id);
+      for (const edge of EDGES) {
+        win.append(Object.assign(document.createElement("div"), {
+          className: `window__resize window__resize--${edge}`,
+        }));
+      }
+      win.dataset.minW = min.w;
+      win.dataset.minH = min.h;
+    }
+
+    let rs = null;
+
+    document.addEventListener("pointerdown", (e) => {
+      const handle = e.target.closest(".window__resize");
+      if (!handle || MOBILE.matches || e.button !== 0) return;
+      const win = handle.closest(".window");
+      // Si estaba ampliada, se redimensiona desde su tamaño actual
+      win.classList.remove("is-max");
+      const edge = handle.className.match(/--(\w+)/)[1];
+      rs = {
+        win, edge, x: e.clientX, y: e.clientY,
+        left: win.offsetLeft, top: win.offsetTop, w: win.offsetWidth, h: win.offsetHeight,
+        minW: +win.dataset.minW, minH: +win.dataset.minH,
+      };
+      this.focus(win);
+      handle.setPointerCapture(e.pointerId);
+      document.body.classList.add("is-dragging");
+      e.preventDefault();
+    });
+
+    document.addEventListener("pointermove", (e) => {
+      if (!rs) return;
+      const a = this.area();
+      const dx = e.clientX - rs.x;
+      const dy = e.clientY - rs.y;
+      let { left, top, w, h } = rs;
+      if (rs.edge.includes("e")) w = Math.min(Math.max(rs.w + dx, rs.minW), window.innerWidth - MARGIN - left);
+      if (rs.edge.includes("s")) h = Math.min(Math.max(rs.h + dy, rs.minH), a.bottom - top);
+      if (rs.edge.includes("w")) {
+        w = Math.max(rs.w - dx, rs.minW);
+        left = Math.max(rs.left + rs.w - w, MARGIN);
+        w = rs.left + rs.w - left;
+      }
+      if (rs.edge.includes("n")) {
+        h = Math.max(rs.h - dy, rs.minH);
+        top = Math.max(rs.top + rs.h - h, MENUBAR_H + MARGIN);
+        h = rs.top + rs.h - top;
+      }
+      Object.assign(rs.win.style, { left: `${left}px`, top: `${top}px`, width: `${w}px`, height: `${h}px` });
+    });
+
+    const stop = () => {
+      if (!rs) return;
+      rs = null;
+      document.body.classList.remove("is-dragging");
+    };
+    document.addEventListener("pointerup", stop);
+    document.addEventListener("pointercancel", stop);
   },
 };

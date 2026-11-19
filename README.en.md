@@ -45,10 +45,13 @@ no libraries.
 |---|---|---|
 | <img src="assets/apps/cleanbruh.png" width="32" /> | [CleanBRUH](https://github.com/pablo96sancho/CleanBRUH) | Locks keyboard, mouse and trackpad so you can clean your Mac |
 | <img src="assets/apps/cafelero.png" width="32" /> | [Cafelero](https://github.com/pablo96sancho/Cafelero) | Keeps your Mac's screen awake |
-| <img src="assets/apps/convertbruh.png" width="32" /> | [ConvertBRUH](https://github.com/pablo96sancho/ConvertBRUH) | Converts files right from Finder |
+| <img src="assets/apps/convertbruh.png" width="32" /> | ConvertBRUH | Converts files right from Finder · *coming soon* |
 | <img src="assets/apps/unrecent.png" width="32" /> | UnRecent | Removes files from Recents without deleting them · *coming soon* |
-| <img src="assets/apps/djokovox.png" width="32" /> | Djoko_vox | Vocal recording audio plugin (C++, JUCE) · *coming soon* |
+| <img src="assets/apps/djokovox.png" width="32" /> | [Djoko_vox](https://www.djokobeatz.com/plugins/djoko-vox) | Vocal recording audio plugin (C++, JUCE) · free for a limited time |
 | <img src="assets/apps/ghostverb.png" width="32" /> | GhostVerb | One-click reverse reverb audio plugin (C++, JUCE) · *coming soon* |
+| <img src="assets/apps/bruto.png" width="32" /> | BRUTO | Audio plugin: a saturator for bass and 808s (C++, JUCE) · *coming soon* |
+| <img src="assets/apps/delirium.png" width="32" /> | DELIRIUM | Audio plugin: a multi-effect pedalboard for melodies (C++, JUCE) · *coming soon* |
+| <img src="assets/apps/switchblade.png" width="32" /> | Switchblade | Audio plugin: a sampler and chopper for Ableton Live (C++, JUCE) · *coming soon* |
 | <img src="assets/apps/tienda.png" width="32" /> | djokobeatz.com | Stripe payments, files on Cloudflare R2 and signed downloads (payments switched off for now; the site is my music portfolio) |
 
 ## How it's built

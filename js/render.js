@@ -144,12 +144,15 @@ function renderDetail(id) {
   if (p.repo) {
     actions.append(el("a", { class: "button", href: p.repo, target: "_blank", rel: "noopener" }, I18N.t("detail.code")));
   }
+  if (p.page) {
+    actions.append(el("a", { class: "button button--primary", href: p.page, target: "_blank", rel: "noopener" }, I18N.t("detail.page")));
+  }
   if (p.site) {
     actions.append(el("a", { class: "button button--primary", href: p.site, target: "_blank", rel: "noopener" }, I18N.t("detail.site")));
   }
 
   let note = null;
-  if (p.status === "available") note = `${I18N.t("detail.requirements")}. ${I18N.t("detail.unsigned")}`;
+  if (p.status === "available") note = p.note ? I18N.pick(p.note) : `${I18N.t("detail.requirements")}. ${I18N.t("detail.unsigned")}`;
   if (p.status === "soon") note = I18N.t("detail.soon");
   if (p.status === "private") note = I18N.t("detail.private");
   if (p.status === "discarded") note = I18N.t("detail.discarded");

@@ -245,3 +245,31 @@
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
 }
+
+/* ---------- Asas para redimensionar (invisibles, en los bordes) ---------- */
+.window__resize {
+  position: absolute;
+  z-index: 5;
+}
+
+.window__resize--n,
+.window__resize--s { left: 24px; right: 24px; height: 6px; cursor: ns-resize; }
+.window__resize--e,
+.window__resize--w { top: 24px; bottom: 24px; width: 6px; cursor: ew-resize; }
+.window__resize--n { top: 0; }
+.window__resize--s { bottom: 0; }
+.window__resize--e { right: 0; }
+.window__resize--w { left: 0; }
+
+.window__resize--ne,
+.window__resize--nw,
+.window__resize--se,
+.window__resize--sw { width: 24px; height: 24px; }
+.window__resize--ne { top: 0; right: 0; cursor: nesw-resize; }
+.window__resize--sw { bottom: 0; left: 0; cursor: nesw-resize; }
+.window__resize--nw { top: 0; left: 0; cursor: nwse-resize; }
+.window__resize--se { bottom: 0; right: 0; cursor: nwse-resize; }
+
+@media (max-width: 820px) {
+  .window__resize { display: none; }
+}

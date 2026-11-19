@@ -12,7 +12,7 @@ const Releases = {
       project: p,
       version: p.release.version,
       date: new Date(p.release.date),
-      url: `${p.repo}/releases/latest`,
+      url: p.release.url || `${p.repo}/releases/latest`,
     }));
     this.render();
     this.refresh();
@@ -23,7 +23,9 @@ const Releases = {
     let cached = null;
     try { cached = JSON.parse(sessionStorage.getItem("releases")); } catch (e) { /* sin almacenamiento */ }
 
-    const updates = cached || await Promise.all(this.items.map(async (item) => {
+    // Solo se consultan los repos públicos; el resto se queda con lo de data.js
+    const live = this.items.filter((item) => item.project.repo && !item.project.release.url);
+    const updates = cached || await Promise.all(live.map(async (item) => {
       const repo = item.project.repo.replace("https://github.com/", "");
       try {
         const res = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);

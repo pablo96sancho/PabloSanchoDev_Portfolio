@@ -7,10 +7,15 @@ const GITHUB = "https://github.com/pablo96sancho";
 const EMAIL = "pablo96sancho@gmail.com";
 const LINKEDIN = "https://www.linkedin.com/in/pablo-sancho-alegre/";
 
+// Página de descarga de Djoko_vox en djokobeatz.com (su repo es privado)
+const VOX_PAGE = "https://www.djokobeatz.com/plugins/djoko-vox";
+
 // Enlace de descarga directa del instalador de una app
 const dmg = (app) => `${GITHUB}/${app}/releases/latest/download/${app}-Installer.dmg`;
 
 // status: "available" | "soon" | "private" | "discarded" (solo en TRASH)
+// page: página de descarga fuera de GitHub · note: nota propia de la ficha (si no, la de las apps)
+// release.url: adónde lleva el widget si no hay repo público
 const PROJECTS = [
   {
     id: "cleanbruh",
@@ -40,13 +45,10 @@ const PROJECTS = [
     id: "convertbruh",
     name: "ConvertBRUH",
     icon: "assets/apps/convertbruh.png",
-    status: "available",
+    status: "soon", // repo privado: en djokobeatz.com también sale como "En proceso"
     tagline: { es: "Convierte archivos desde el Finder.", en: "Converts files right from Finder." },
     description: { es: "Mientras arrastras un archivo, mantienes Shift, Option o Control y aparece un anillo de opciones alrededor del cursor: lo sueltas sobre una y listo. Convierte audio, imagen, vídeo y PDF, lo comparte por AirDrop, comprime, normaliza y amplía imágenes ×4 con IA. Todo en local y sin tocar nunca el original.", en: "While you drag a file, hold Shift, Option or Control and a ring of options appears around the cursor: drop it on one and you're done. It converts audio, images, video and PDFs, shares via AirDrop, compresses, normalizes and upscales images ×4 with AI. All on-device, and the original is never touched." },
     tech: ["Swift", "SwiftUI", "AppKit", "FFmpeg"],
-    repo: `${GITHUB}/ConvertBRUH`,
-    download: dmg("ConvertBRUH"),
-    release: { version: "v1.6", date: "2026-10-27" }, // respaldo si GitHub no responde
   },
   {
     id: "unrecent",
@@ -61,10 +63,14 @@ const PROJECTS = [
     id: "djokovox",
     name: "Djoko_vox",
     icon: "assets/apps/djokovox.png",
-    status: "soon",
+    status: "available",
     tagline: { es: "Plugin de audio: channel strip para grabar voces.", en: "Audio plugin: a vocal recording channel strip." },
     description: { es: "Plugin multiefecto para grabar voces de música urbana con pocos controles y sonido «de disco» desde la primera toma. Encadena cinco módulos inspirados en equipos clásicos: previo con EQ, compresor óptico, EQ de aire con de-esser, saturación y reverb/delay. Tiene un modo Tracking con latencia cero para escucharte mientras grabas.", en: "A multi-effect plugin for recording urban-music vocals, with few controls and a record-ready sound from the first take. It chains five modules inspired by classic gear: preamp with EQ, optical compressor, air EQ with de-esser, saturation and reverb/delay. Its zero-latency Tracking mode lets you monitor while you record." },
     tech: ["C++20", "JUCE 8", "VST3 · AU"],
+    // Repo privado: se descarga gratis desde su página de djokobeatz.com
+    page: VOX_PAGE,
+    note: { es: "Gratis por tiempo limitado. Mac (macOS 13 o posterior, Apple Silicon e Intel; AU y VST3) y Windows 10/11 (VST3).", en: "Free for a limited time. Mac (macOS 13 or later, Apple Silicon and Intel; AU and VST3) and Windows 10/11 (VST3)." },
+    release: { version: "v1.2.0", date: "2026-10-28", url: VOX_PAGE },
   },
   {
     id: "ghostverb",
@@ -73,6 +79,33 @@ const PROJECTS = [
     status: "soon",
     tagline: { es: "Plugin de audio: reverse reverb en un clic.", en: "Audio plugin: reverse reverb in one click." },
     description: { es: "Crea solo el efecto reverse reverb, ese riser fantasma que sube justo antes de una palabra. Detecta las sílabas, le aplica reverb a la elegida, invierte la cola y la cuadra al tempo del DAW para que termine justo donde empieza la palabra. Añade curva de subida, tremolo sincronizado y efectos, y el resultado se arrastra al DAW como clip de audio. Usa una reverb FDN propia y tiene tests de DSP.", en: "Builds the reverse reverb effect for you: that ghostly riser that swells right before a word. It detects the syllables, adds reverb to the one you pick, reverses the tail and syncs it to the DAW's tempo so it ends exactly where the word starts. It adds a rise curve, tempo-synced tremolo and effects, and you drag the result into your DAW as an audio clip. It runs on a custom FDN reverb and has DSP tests." },
+    tech: ["C++20", "JUCE 8", "VST3 · AU"],
+  },
+  {
+    id: "bruto",
+    name: "BRUTO",
+    icon: "assets/apps/bruto.png",
+    status: "soon",
+    tagline: { es: "Plugin de audio: saturador para bajos y 808.", en: "Audio plugin: a saturator for bass and 808s." },
+    description: { es: "Saturador para que el bajo y la 808 se oigan en un móvil o en un altavoz pequeño: añade growl en los medios-graves y deja el sub limpio y en mono por debajo del crossover. Tiene tres modos (TUBE, CONSOLE y FUZZ), oversampling de hasta 8x con antialiasing (ADAA), igualación interna para que el drive no dispare el nivel, mezcla en fase y clipper de salida. Con tests de DSP e instaladores para Mac y Windows.", en: "A saturator that makes bass and 808s audible on a phone or a small speaker: it adds growl in the low mids and keeps the sub clean and mono below the crossover. It has three modes (TUBE, CONSOLE and FUZZ), up to 8x oversampling with antialiasing (ADAA), internal level matching so the drive doesn't blow up the level, phase-aligned mix and an output clipper. With DSP tests and installers for Mac and Windows." },
+    tech: ["C++20", "JUCE 8", "VST3 · AU"],
+  },
+  {
+    id: "delirium",
+    name: "DELIRIUM",
+    icon: "assets/apps/delirium.png",
+    status: "soon",
+    tagline: { es: "Plugin de audio: pedalera multiefecto para melodías.", en: "Audio plugin: a multi-effect pedalboard for melodies." },
+    description: { es: "Una pedalera para synths, keys, guitarras y pads: montas hasta 8 pedales de entre 12 (saturación, cinta, chorus, delay, reverb con shimmer, un granular de hasta 64 grains…) y la tocas como una física, con knobs, footswitch y latiguillos. El botón GENERATE te monta la cadena según el vibe que elijas, con el nivel compensado, y dos macros (CHAOS y MELT) le dan vida. Sincronizado al tempo del DAW, sin clicks al cambiar pedales y con 20 presets.", en: "A pedalboard for synths, keys, guitars and pads: chain up to 8 of 12 pedals (saturation, tape, chorus, delay, shimmer reverb, a granular with up to 64 grains…) and play it like a real one, with knobs, footswitches and patch cables. The GENERATE button builds the chain for the vibe you pick, level-matched, and two macros (CHAOS and MELT) bring it to life. Synced to the DAW's tempo, click-free when swapping pedals, with 20 presets." },
+    tech: ["C++17", "JUCE", "VST3 · AU"],
+  },
+  {
+    id: "switchblade",
+    name: "Switchblade",
+    icon: "assets/apps/switchblade.png",
+    status: "soon",
+    tagline: { es: "Plugin de audio: sampler y chopper para Ableton Live.", en: "Audio plugin: a sampler and chopper for Ableton Live." },
+    description: { es: "Arrastras una canción, la troceas en 16 pads y la tocas a tempo de tu proyecto en menos de 30 segundos. Detecta el BPM y la tonalidad, propone los cortes y deja cada chop en un pad, con tempo y tono independientes para llevarlo a la key del beat. Se toca sin latencia desde los pads o por MIDI, tiene efectos de directo (roll, gate, stop, reverse…) y arrastra al DAW un clip MIDI con los chops.", en: "Drop in a song, chop it into 16 pads and play it at your project's tempo in under 30 seconds. It detects the BPM and key, suggests the cuts and puts each chop on a pad, with independent tempo and pitch to match the beat's key. It plays with zero latency from the pads or over MIDI, has live effects (roll, gate, stop, reverse…) and drags a MIDI clip of the chops into your DAW." },
     tech: ["C++20", "JUCE 8", "VST3 · AU"],
   },
   {

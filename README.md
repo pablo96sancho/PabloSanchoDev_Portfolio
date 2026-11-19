@@ -45,10 +45,13 @@ frameworks ni librerías.
 |---|---|---|
 | <img src="assets/apps/cleanbruh.png" width="32" /> | [CleanBRUH](https://github.com/pablo96sancho/CleanBRUH) | Bloquea teclado, ratón y trackpad para limpiar el Mac |
 | <img src="assets/apps/cafelero.png" width="32" /> | [Cafelero](https://github.com/pablo96sancho/Cafelero) | Mantiene la pantalla del Mac encendida |
-| <img src="assets/apps/convertbruh.png" width="32" /> | [ConvertBRUH](https://github.com/pablo96sancho/ConvertBRUH) | Convierte archivos desde el Finder |
+| <img src="assets/apps/convertbruh.png" width="32" /> | ConvertBRUH | Convierte archivos desde el Finder · *próximamente* |
 | <img src="assets/apps/unrecent.png" width="32" /> | UnRecent | Quita archivos de Recientes sin borrarlos · *próximamente* |
-| <img src="assets/apps/djokovox.png" width="32" /> | Djoko_vox | Plugin de audio para grabar voces (C++, JUCE) · *próximamente* |
+| <img src="assets/apps/djokovox.png" width="32" /> | [Djoko_vox](https://www.djokobeatz.com/plugins/djoko-vox) | Plugin de audio para grabar voces (C++, JUCE) · gratis por tiempo limitado |
 | <img src="assets/apps/ghostverb.png" width="32" /> | GhostVerb | Plugin de audio de reverse reverb en un clic (C++, JUCE) · *próximamente* |
+| <img src="assets/apps/bruto.png" width="32" /> | BRUTO | Plugin de audio: saturador para bajos y 808 (C++, JUCE) · *próximamente* |
+| <img src="assets/apps/delirium.png" width="32" /> | DELIRIUM | Plugin de audio: pedalera multiefecto para melodías (C++, JUCE) · *próximamente* |
+| <img src="assets/apps/switchblade.png" width="32" /> | Switchblade | Plugin de audio: sampler y chopper para Ableton Live (C++, JUCE) · *próximamente* |
 | <img src="assets/apps/tienda.png" width="32" /> | djokobeatz.com | Pagos con Stripe, archivos en Cloudflare R2 y descargas firmadas (pagos desactivados por ahora; la web es mi portfolio musical) |
 
 ## Cómo está hecha

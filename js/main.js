@@ -124,6 +124,7 @@ function init() {
   Terminal.init();
   Releases.init();
   Windows.enableDragging();
+  Windows.enableResizing();
 
   updateClock();
   setInterval(updateClock, 15000);
